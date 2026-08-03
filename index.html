@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Code to Container — Workshop Prerequisites</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="progress-wrap">
+  <div class="progress-inner">
+    <span class="progress-label" id="progressLabel">0 / 8 ready</span>
+    <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+  </div>
+</div>
+
+<div class="hero">
+  <svg class="containers-illustration" width="220" height="180" viewBox="0 0 220 180" fill="none">
+    <rect x="90" y="120" width="60" height="40" rx="3" fill="#0DB7ED" opacity="0.85"/>
+    <rect x="90" y="120" width="60" height="40" rx="3" stroke="#0A2540" stroke-width="1"/>
+    <line x1="90" y1="132" x2="150" y2="132" stroke="#0A2540" stroke-width="1" opacity="0.4"/>
+    <line x1="90" y1="148" x2="150" y2="148" stroke="#0A2540" stroke-width="1" opacity="0.4"/>
+    <rect x="30" y="80" width="60" height="40" rx="3" fill="#1A7F5A" opacity="0.85"/>
+    <rect x="30" y="80" width="60" height="40" rx="3" stroke="#0A2540" stroke-width="1"/>
+    <line x1="30" y1="92" x2="90" y2="92" stroke="#0A2540" stroke-width="1" opacity="0.4"/>
+    <line x1="30" y1="108" x2="90" y2="108" stroke="#0A2540" stroke-width="1" opacity="0.4"/>
+    <rect x="90" y="80" width="60" height="40" rx="3" fill="#0DB7ED" opacity="0.6"/>
+    <rect x="90" y="80" width="60" height="40" rx="3" stroke="#0A2540" stroke-width="1"/>
+    <line x1="90" y1="92" x2="150" y2="92" stroke="#0A2540" stroke-width="1" opacity="0.3"/>
+    <line x1="90" y1="108" x2="150" y2="108" stroke="#0A2540" stroke-width="1" opacity="0.3"/>
+    <rect x="60" y="40" width="60" height="40" rx="3" fill="#F5F8FA" opacity="0.9"/>
+    <rect x="60" y="40" width="60" height="40" rx="3" stroke="#0A2540" stroke-width="1"/>
+    <line x1="60" y1="52" x2="120" y2="52" stroke="#0A2540" stroke-width="1" opacity="0.3"/>
+    <line x1="60" y1="68" x2="120" y2="68" stroke="#0A2540" stroke-width="1" opacity="0.3"/>
+  </svg>
+  <div class="hero-inner">
+    <div class="eyebrow"><span class="eyebrow-dot"></span>Workshop prerequisites</div>
+    <h1>Code to <span>Container</span></h1>
+    <p>Everything you need set up before we meet — about 30&ndash;40 minutes, one time only. Do this a day or two before the session so we spend our time building, not installing.</p>
+    <div class="hero-meta">
+      <div><strong>Windows 10 / 11</strong>required</div>
+      <div><strong>~5 GB</strong>free disk space</div>
+      <div><strong>8 steps</strong>one time setup</div>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <div class="legend">
+    <span class="legend-title">Where each step happens:</span>
+    <span class="tag tag-win"><span class="tag-dot"></span>Windows</span>
+    <span class="tag tag-ubuntu"><span class="tag-dot"></span>Ubuntu (WSL terminal)</span>
+    <button class="complete-back" style="margin-left: auto;" onclick="resetChecklist()">Reset checklist</button>
+  </div>
+
+  <div class="intro-note">
+    <strong>Before you start:</strong> you'll need admin rights on your laptop and a stable internet connection. Everything below is free — no credit card, no paid software. Follow the steps in order and check each one off as you go.
+  </div>
+
+  <!-- STEP 1 -->
+  <div class="step" data-step="1">
+    <div class="step-header">
+      <div class="step-number">1</div>
+      <div class="step-title-wrap">
+        <h2>Check your system is ready <span class="tag tag-win"><span class="tag-dot"></span>Windows</span></h2>
+        <div class="step-sub">Windows version and virtualization support</div>
+      </div>
+      <label class="step-check">
+        <input type="checkbox" onchange="handleCheckboxChange()"> Done
+      </label>
+    </div>
+    <div class="step-body">
+      <p>You need <strong>Windows 10 (build 19041 or later) or Windows 11</strong>. To check your build: press <code>Win + R</code>, type <code>winver</code>, press Enter.</p>
+      <p>Then confirm virtualization is enabled — open <strong>Task Manager → Performance tab → CPU</strong>. Look for <strong>Virtualization: Enabled</strong> at the bottom right.</p>
+      <div class="callout"><strong>If it says Disabled:</strong> this needs to be turned on in your laptop's BIOS. It's usually on by default on laptops bought in the last 5 years. If yours is off, message the instructor before the session rather than during it.</div>
+    </div>
+  </div>
+
+  <!-- STEP 2 -->
+  <div class="step" data-step="2">
+    <div class="step-header">
+      <div class="step-number">2</div>
+      <div class="step-title-wrap">
+        <h2>Install WSL2 with Ubuntu <span class="tag tag-win"><span class="tag-dot"></span>Windows</span></h2>
+        <div class="step-sub">One command, then a restart</div>
+      </div>
+      <label class="step-check">
+        <input type="checkbox" onchange="handleCheckboxChange()"> Done
+      </label>
+    </div>
+    <div class="step-body">
+      <p>Open <strong>PowerShell as Administrator</strong> (right-click the Start button → "Terminal (Admin)" or "Windows PowerShell (Admin)"), then run:</p>
+      <div class="code-block">
+        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        <pre>wsl --install -d Ubuntu</pre>
+      </div>
+      <p>When it finishes, <strong>restart your laptop</strong>. After restarting, Ubuntu should open automatically — if not, search for "Ubuntu" in the Start menu.</p>
+    </div>
+  </div>
+
+  <!-- STEP 3 -->
+  <div class="step" data-step="3">
+    <div class="step-header">
+      <div class="step-number">3</div>
+      <div class="step-title-wrap">
+        <h2>Create your Ubuntu username &amp; password <span class="tag tag-ubuntu"><span class="tag-dot"></span>Ubuntu</span></h2>
+        <div class="step-sub">First launch, right after restart</div>
+      </div>
+      <label class="step-check">
+        <input type="checkbox" onchange="handleCheckboxChange()"> Done
+      </label>
+    </div>
+    <div class="step-body">
+      <p>The first time Ubuntu opens, it will ask you to create a <strong>username and password</strong>. This is separate from your Windows login — pick anything you'll remember, and write it down somewhere safe.</p>
+      <p>You'll land on an Ubuntu terminal prompt when this is done — that's where every step tagged <span class="tag tag-ubuntu"><span class="tag-dot"></span>Ubuntu</span> below happens.</p>
+    </div>
+  </div>
+
+  <!-- STEP 4 -->
+  <div class="step" data-step="4">
+    <div class="step-header">
+      <div class="step-number">4</div>
+      <div class="step-title-wrap">
+        <h2>Enable systemd <span class="tag tag-ubuntu"><span class="tag-dot"></span>Ubuntu</span> <span class="tag tag-win"><span class="tag-dot"></span>Windows</span></h2>
+        <div class="step-sub">So Docker can start automatically</div>
+      </div>
+      <label class="step-check">
+        <input type="checkbox" onchange="handleCheckboxChange()"> Done
+      </label>
+    </div>
+    <div class="step-body">
+      <div class="env-label ubuntu"><span class="tag-dot"></span>In Ubuntu</div>
+      <p>Open the WSL config file:</p>
+      <div class="code-block">
+        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        <pre>sudo nano /etc/wsl.conf</pre>
+      </div>
+      <p>Add these two lines, then save with <code>Ctrl+O</code>, <code>Enter</code>, and exit with <code>Ctrl+X</code>:</p>
+      <div class="code-block">
+        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        <pre>[boot]
+systemd=true</pre>
+      </div>
+      <div class="env-label win"><span class="tag-dot"></span>In Windows (PowerShell)</div>
+      <p>Shut down WSL so the change takes effect:</p>
+      <div class="code-block">
+        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        <pre>wsl --shutdown</pre>
+      </div>
+      <p>Reopen Ubuntu from the Start menu. This step only needs to be done once.</p>
+    </div>
+  </div>
+
+  <!-- STEP 5 -->
+  <div class="step" data-step="5">
+    <div class="step-header">
+      <div class="step-number">5</div>
+      <div class="step-title-wrap">
+        <h2>Install Docker Engine <span class="tag tag-ubuntu"><span class="tag-dot"></span>Ubuntu</span></h2>
+        <div class="step-sub">Terminal only — no Docker Desktop needed</div>
+      </div>
+      <label class="step-check">
+        <input type="checkbox" onchange="handleCheckboxChange()"> Done
+      </label>
+    </div>
+    <div class="step-body">
+      <p>We're installing Docker's command-line engine directly — the same way it runs on real servers. Run these one at a time inside Ubuntu:</p>
+      <div class="code-block">
+        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        <pre><span class="comment"># Set up Docker's official repository</span>
+sudo apt-get update
+sudo apt-get install -y ca-certificates curl
+sudo install -m 0755 -d /etc/apt/keyrings
+sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+sudo chmod a+r /etc/apt/keyrings/docker.asc
+
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
+  $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
+  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+sudo apt-get update</pre>
+      </div>
+      <div class="code-block">
+        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        <pre><span class="comment"># Install Docker Engine, CLI, and plugins</span>
+sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin</pre>
+      </div>
+      <div class="code-block">
+        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        <pre><span class="comment"># Let Docker start automatically, and run without sudo</span>
+sudo systemctl enable docker
+sudo usermod -aG docker $USER
+newgrp docker</pre>
+      </div>
+      <p>Test it:</p>
+      <div class="code-block">
+        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        <pre>docker run hello-world</pre>
+      </div>
+      <div class="success-callout"><strong>Success looks like:</strong> a message starting with "Hello from Docker! This message shows that your installation appears to be working correctly."</div>
+    </div>
+  </div>
+
+  <!-- STEP 6 -->
+  <div class="step" data-step="6">
+    <div class="step-header">
+      <div class="step-number">6</div>
+      <div class="step-title-wrap">
+        <h2>Set up Git and GitHub <span class="tag tag-ubuntu"><span class="tag-dot"></span>Ubuntu</span></h2>
+        <div class="step-sub">Account, identity, and authentication</div>
+      </div>
+      <label class="step-check">
+        <input type="checkbox" onchange="handleCheckboxChange()"> Done
+      </label>
+    </div>
+    <div class="step-body">
+      <p>If you don't already have a GitHub account, sign up at <a href="https://github.com/signup" target="_blank">github.com/signup</a> using an email you check regularly.</p>
+      <p>Then set your identity in Git so your commits are labeled correctly. Inside Ubuntu:</p>
+      <div class="code-block">
+        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        <pre>git config --global user.name "Your Name"
+git config --global user.email "you@example.com"</pre>
+      </div>
+      <p>Next, install the GitHub CLI so pushing to GitHub doesn't ask for passwords or tokens later:</p>
+      <div class="code-block">
+        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        <pre><span class="comment"># Install GitHub CLI</span>
+(type -p wget >/dev/null || sudo apt install wget -y)
+sudo mkdir -p -m 755 /etc/apt/keyrings
+wget -qO- https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo tee /etc/apt/keyrings/githubcli-archive-keyring.gpg > /dev/null
+sudo chmod go+r /etc/apt/keyrings/githubcli-archive-keyring.gpg
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null
+sudo apt update
+sudo apt install gh -y</pre>
+      </div>
+      <p>Then authenticate — this is a one-time step per Ubuntu install:</p>
+      <div class="code-block">
+        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        <pre>gh auth login</pre>
+      </div>
+      <p>Choose: <strong>GitHub.com</strong> → <strong>HTTPS</strong> → <strong>Yes</strong> (authenticate Git with your GitHub credentials) → <strong>Login with a web browser</strong>. It will show you a one-time code and a link — open the link, paste the code, and approve access in your browser.</p>
+      <div class="success-callout"><strong>Success looks like:</strong> the terminal shows "Logged in as &lt;your-username&gt;". You won't need to log in again after this.</div>
+    </div>
+  </div>
+
+  <!-- STEP 7 -->
+  <div class="step" data-step="7">
+    <div class="step-header">
+      <div class="step-number">7</div>
+      <div class="step-title-wrap">
+        <h2>Install VS Code + WSL extension <span class="tag tag-win"><span class="tag-dot"></span>Windows</span></h2>
+        <div class="step-sub">Your editor, connected to Ubuntu</div>
+      </div>
+      <label class="step-check">
+        <input type="checkbox" onchange="handleCheckboxChange()"> Done
+      </label>
+    </div>
+    <div class="step-body">
+      <div class="env-label win"><span class="tag-dot"></span>In Windows</div>
+      <p>Download VS Code from <a href="https://code.visualstudio.com" target="_blank">code.visualstudio.com</a> and install it normally. Open it, go to the Extensions panel (<code>Ctrl+Shift+X</code>), search for <strong>WSL</strong>, and install the official Microsoft extension.</p>
+      <div class="env-label ubuntu"><span class="tag-dot"></span>In Ubuntu</div>
+      <p>Navigate to any folder and run:</p>
+      <div class="code-block">
+        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        <pre>code .</pre>
+      </div>
+      <p>VS Code should open, connected to your Ubuntu filesystem, with a terminal you can use directly inside it.</p>
+    </div>
+  </div>
+
+  <!-- STEP 8 -->
+  <div class="step" data-step="8">
+    <div class="step-header">
+      <div class="step-number">8</div>
+      <div class="step-title-wrap">
+        <h2>Final verification <span class="tag tag-ubuntu"><span class="tag-dot"></span>Ubuntu</span></h2>
+        <div class="step-sub">Run these four checks before session day</div>
+      </div>
+      <label class="step-check">
+        <input type="checkbox" onchange="handleCheckboxChange()"> Done
+      </label>
+    </div>
+    <div class="step-body">
+      <p>Open Ubuntu and run each of these. All four should return a version number or success message, with no errors.</p>
+      <div class="verify-grid">
+        <div class="verify-item">
+          <code>docker --version</code>
+          <div class="expect">Expect: Docker version 2X.X.X</div>
+        </div>
+        <div class="verify-item">
+          <code>docker ps</code>
+          <div class="expect">Expect: an empty table, no error</div>
+        </div>
+        <div class="verify-item">
+          <code>gh auth status</code>
+          <div class="expect">Expect: "Logged in as ..."</div>
+        </div>
+        <div class="verify-item">
+          <code>code --version</code>
+          <div class="expect">Expect: a version number, 3 lines</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h2 style="margin: 40px 0 16px; font-size: 20px;">Troubleshooting</h2>
+
+  <details class="accordion">
+    <summary>Task Manager shows "Virtualization: Disabled"</summary>
+    <div class="accordion-body">This needs to be enabled in your laptop's BIOS/UEFI settings (usually under an "Advanced" or "CPU Configuration" menu, look for "Virtualization Technology" or "VT-x"). If you're not comfortable doing this yourself, message the instructor before the session — don't attempt it for the first time during class.</div>
+  </details>
+
+  <details class="accordion">
+    <summary><code>wsl --install</code> fails or does nothing</summary>
+    <div class="accordion-body">Make sure you're running PowerShell as Administrator (not a regular window). If it still fails, run <code>wsl --update</code> first, then try the install command again. A restart is often required even if not explicitly prompted.</div>
+  </details>
+
+  <details class="accordion">
+    <summary><code>docker ps</code> gives a "permission denied" error</summary>
+    <div class="accordion-body">This means your user isn't in the docker group yet, or the group change hasn't taken effect. Run <code>sudo usermod -aG docker $USER</code> again, then fully close and reopen your Ubuntu terminal (not just <code>newgrp docker</code>).</div>
+  </details>
+
+  <details class="accordion">
+    <summary><code>docker ps</code> says it cannot connect to the Docker daemon</summary>
+    <div class="accordion-body">The Docker service isn't running. Try <code>sudo service docker start</code>. If you completed Step 4 (systemd) correctly, this shouldn't happen — double check <code>/etc/wsl.conf</code> has the exact two lines shown above, and that you ran <code>wsl --shutdown</code> from PowerShell afterward.</div>
+  </details>
+
+  <details class="accordion">
+    <summary><code>gh auth login</code> browser flow doesn't complete</summary>
+    <div class="accordion-body">Make sure you copy the one-time code shown in the terminal before opening the link — the browser page will ask you to paste it. If the browser opened on the wrong account, log out of GitHub in the browser first, then rerun <code>gh auth login</code>.</div>
+  </details>
+
+  <details class="accordion">
+    <summary><code>code .</code> doesn't open VS Code from Ubuntu</summary>
+    <div class="accordion-body">Make sure the WSL extension is installed in VS Code on the Windows side first. Then close and reopen your Ubuntu terminal and try again. If it still fails, open VS Code manually and use the green "><" icon in the bottom-left corner to connect to WSL.</div>
+  </details>
+
+  <div class="bring-card">
+    <h2>Bring to session day</h2>
+    <ul>
+      <li>Laptop, fully charged, with a charger</li>
+      <li>All 8 steps above checked off and verified</li>
+      <li>Your GitHub username (you're already logged in via <code>gh</code>, no password needed)</li>
+      <li>Your Ubuntu username and password from Step 3</li>
+    </ul>
+  </div>
+
+</div>
+
+<footer>
+  © Ajeru 2026
+  <div class="docker-note">Docker and the Docker logo are trademarks of Docker, Inc. This is an independent workshop guide and is not affiliated with or endorsed by Docker, Inc.</div>
+</footer>
+
+<div class="complete-overlay" id="completeOverlay">
+  <div class="complete-eyebrow">All 8 steps complete</div>
+  <div class="complete-title">Let's make<br><span>Code to Containers</span></div>
+  <div class="complete-sub">You're fully set up. Save this page's checklist state won't persist on reload — you're ready for session day.</div>
+  <div class="countdown" id="countdown">
+    <div class="countdown-unit"><div class="countdown-value" id="cdDays">00</div><div class="countdown-label">Days</div></div>
+    <div class="countdown-unit"><div class="countdown-value" id="cdHours">00</div><div class="countdown-label">Hours</div></div>
+    <div class="countdown-unit"><div class="countdown-value" id="cdMinutes">00</div><div class="countdown-label">Minutes</div></div>
+    <div class="countdown-unit"><div class="countdown-value" id="cdSeconds">00</div><div class="countdown-label">Seconds</div></div>
+  </div>
+  <button class="complete-back" onclick="hideComplete()">Back to checklist</button>
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
