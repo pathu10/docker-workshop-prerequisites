@@ -6,7 +6,7 @@ An interactive, self-checking setup guide for the **Code to Container** Docker w
 
 ## What this is
 
-A single self-contained `index.html` file — no build step, no dependencies, no backend. It's deployed as a static site via Cloudflare Pages, connected directly to this repo for automatic redeploys on every push.
+A static site with no build step, no dependencies, no backend — just `index.html`, `styles.css`, and `script.js`. It's deployed as a static site via Cloudflare Pages, connected directly to this repo for automatic redeploys on every push.
 
 ## What's inside
 
@@ -26,9 +26,13 @@ A single self-contained `index.html` file — no build step, no dependencies, no
 
 ## Editing
 
-Everything lives in `index.html` — open it in any editor (or `code .` from WSL) and edit directly. No build tooling required.
+The site is split into three files — open them in any editor (or `code .` from WSL) and edit directly. No build tooling required.
 
-**Before sharing with a new cohort**, update the countdown target date near the bottom of the `<script>` block:
+- `index.html` — markup and content for the setup steps, troubleshooting, and completion screen
+- `styles.css` — all styling, including the `:root` color/theme variables
+- `script.js` — checklist persistence, copy buttons, and the countdown timer
+
+**Before sharing with a new cohort**, update the countdown target date near the bottom of `script.js`:
 
 ```javascript
 // TODO: replace with your actual session date and time before sharing.
@@ -48,7 +52,7 @@ const SESSION_DATE = new Date('2026-08-10T09:00:00');
 This repo is connected to Cloudflare Pages. Any push to `main` triggers an automatic rebuild and redeploy — no manual steps needed:
 
 ```bash
-git add index.html
+git add index.html styles.css script.js
 git commit -m "Update checklist"
 git push
 ```
