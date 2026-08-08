@@ -100,6 +100,14 @@
         <pre>wsl --install -d Ubuntu</pre>
       </div>
       <p>When it finishes, <strong>restart your laptop</strong>. After restarting, Ubuntu should open automatically — if not, search for "Ubuntu" in the Start menu.</p>
+      <div class="callout"><strong>If the command above fails or does nothing:</strong> your machine likely has the required Windows features turned off. Enable them manually first, from the same admin PowerShell window:
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+          <pre>dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
+dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart</pre>
+        </div>
+        Restart your laptop, then run the <code>wsl --install -d Ubuntu</code> command above again.
+      </div>
     </div>
   </div>
 
